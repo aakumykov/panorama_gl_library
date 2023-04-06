@@ -1,0 +1,41 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdkVersion 33
+    ndkVersion "24.0.8215888"
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 33
+    }
+
+    externalNativeBuild {
+        ndkBuild {
+            path "src/main/jni/Android.mk"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    namespace 'com.panoramagl'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation "androidx.core:core-ktx:1.9.0"
+    api "com.github.AppDevNext.Logcat:LogcatCoreLib:2.12"
+    implementation "com.squareup.okhttp3:okhttp:4.10.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.10"
+}
