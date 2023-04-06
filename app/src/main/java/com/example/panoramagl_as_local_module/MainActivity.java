@@ -91,16 +91,11 @@ public class MainActivity extends AppCompatActivity {
             public void onDidMoveTouching(@Nullable PLIView view, @Nullable List<UITouch> touches, @Nullable MotionEvent event) {
                 super.onDidMoveTouching(view, touches, event);
                 displayYawPitchRoll();
-            }
-
-            @Override
-            public void onTouchesMoved(@Nullable PLIView view, @Nullable List<UITouch> touches, @Nullable MotionEvent event) {
-                super.onTouchesMoved(view, touches, event);
-                displayYawPitchRoll();
+                rotateSampleRect();
             }
         });
 
-//        plManager.activateOrientation();
+        mPlManager.activateOrientation();
         mPlManager.setAcceleratedTouchScrollingEnabled(false);
         mPlManager.setAccelerometerEnabled(true);
         mPlManager.setResetEnabled(false);
@@ -146,6 +141,18 @@ public class MainActivity extends AppCompatActivity {
         mBinding.yawView.setText(rotation.yaw+"");
         mBinding.pitchView.setText(rotation.pitch+"");
         mBinding.rollView.setText(rotation.roll+"");
+    }
+
+    private void rotateSampleRect() {
+        PLICamera plCamera = mPlManager.getCamera();
+        if (null == plCamera)
+            return;
+
+        PLRotation rotation = mPlManager.getCamera().getRotation();
+
+        mBinding.sampleRect.setRotation(rotation.roll);
+        mBinding.sampleRect.setRotationX(rotation.pitch);
+        mBinding.sampleRect.setRotationY(rotation.yaw);
     }
 
     private void showToast(String text) {
