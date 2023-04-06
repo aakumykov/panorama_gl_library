@@ -15,5 +15,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "panoramagl_as_local_module"
-include ':app'
 include ':panorama_gl'
