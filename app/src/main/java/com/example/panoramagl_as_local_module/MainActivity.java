@@ -90,7 +90,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDidMoveTouching(@Nullable PLIView view, @Nullable List<UITouch> touches, @Nullable MotionEvent event) {
                 super.onDidMoveTouching(view, touches, event);
-                showToast("onDidMoveTouching()");
+                displayYawPitchRoll();
+            }
+
+            @Override
+            public void onTouchesMoved(@Nullable PLIView view, @Nullable List<UITouch> touches, @Nullable MotionEvent event) {
+                super.onTouchesMoved(view, touches, event);
+                displayYawPitchRoll();
             }
         });
 
@@ -128,6 +134,18 @@ public class MainActivity extends AppCompatActivity {
 
 //        panorama.setImage(new PLImage(PLUtils.getBitmap(this, R.raw.image1024), false));
 //        plManager.setPanorama(panorama);
+    }
+
+    private void displayYawPitchRoll() {
+        PLICamera plCamera = mPlManager.getCamera();
+        if (null == plCamera)
+            return;
+
+        PLRotation rotation = mPlManager.getCamera().getRotation();
+
+        mBinding.yawView.setText(rotation.yaw+"");
+        mBinding.pitchView.setText(rotation.pitch+"");
+        mBinding.rollView.setText(rotation.roll+"");
     }
 
     private void showToast(String text) {
