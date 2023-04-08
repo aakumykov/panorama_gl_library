@@ -5,7 +5,7 @@ plugins {
 }
 
 project.ext {
-    artifactId = 'panoramagl_gl_library'
+    artifactId = 'panorama_gl_library'
     groupId = 'com.github.aakumykov'
     versionCode = 1
     versionName = "0.0." + versionCode
