@@ -909,7 +909,7 @@ open class PLManager(private val context: Context) : PLIView, SensorEventListene
         sensorManager.unregisterListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER))
     }
 
-    protected fun accelerometer(event: SensorEvent?, acceleration: UIAcceleration) {
+    open fun accelerometer(event: SensorEvent?, acceleration: UIAcceleration) {
         if (this.isLocked || resetWithShake(acceleration) || mIsValidForTouch || mIsValidForScrolling || mIsValidForSensorialRotation || isValidForCameraAnimation || mIsValidForTransition) return
         if (mIsAccelerometerEnabled) {
             if (mListener != null && !mListener!!.onShouldAccelerate(this, acceleration, event)) return
