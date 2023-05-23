@@ -180,6 +180,10 @@ public class PLUtils {
         return null;
     }
 
+    public static Bitmap getBitmap(Context context, Uri imageUri) {
+        return getBitmap(context, imageUri.toString());
+    }
+
     public static Bitmap getBitmap(Context context, int resourceId) {
         return getBitmap(context, resourceId, Config.ARGB_8888);
     }
