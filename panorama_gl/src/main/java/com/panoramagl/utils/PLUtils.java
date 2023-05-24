@@ -26,6 +26,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.util.DisplayMetrics;
 
 import com.panoramagl.enumerations.PLTextureColorFormat;
@@ -164,6 +165,8 @@ public class PLUtils {
                 File file = new File(url.substring(7));
                 if (file.canRead())
                     is = new FileInputStream(file);
+            } else if (url.startsWith("content://")) {
+                is = context.getContentResolver().openInputStream(Uri.parse(url));
             }
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inDither = true;
