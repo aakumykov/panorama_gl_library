@@ -14,5 +14,5 @@ dependencyResolutionManagement {
         maven { url 'https://jitpack.io' }
     }
 }
-rootProject.name = "panoramagl_as_local_module"
+rootProject.name = "panorama_gl_library"
 include ':panorama_gl'
